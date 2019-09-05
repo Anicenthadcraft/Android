@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F9D53E</color>
+    <color name="colorPrimaryDark">#23282e</color>
+    <color name="colorAccent">#F9D53E</color>
+
+    <color name="default_background_color">#555555</color>
+    <color name="default_text_color">#ffffff</color>
+
+
+    <color name="lightest_gray">#C3C3C3</color>
+    <color name="color_orange_button">#e05425</color>
+    <color name="black">#000000</color>
+    <color name="dark_gray">#7e7e7e</color>
+    <color name="nodata_dark_gray">#797979</color>
+    <color name="light_gray">#A7A7A7</color>
+    <color name="bar_bg_color">#CACACA</color>
+    <color name="paybill_placeholder_color">#8E8E8E</color>
+    <color name="paybill_checkbox_color">#686868</color>
+    <color name="money_background">#F6F6F6</color>
+    <color name="transluent_color">#A6000000</color>
+    <color name="contact_username_color">#4b4b4b</color>
+
+    <color name="white">#ffffff</color>
+    <color name="notification_bg">#FF2E05</color>
+
+    <color name="login_devider_color">#677F8F</color>
+    <color name="color_transparent">#00FFFFFF</color>
+    <color name="orng_btn_clr">#e05425</color>
+    <color name="card_bg_color">#009688</color>
+    <color name="account_bg_color">#237487</color>
+    <color name="side_panel_color">#23282e</color>
+    <color name="facebook_color">#157DC3</color>
+    <color name="vertical_line">#3690CB</color>
+    <color name="login_off_blue">#859BAA</color>
+    <color name="default_textcolor">#063553</color>
+    <color name="dark_text_gray">#515151</color>
+    <color name="amount_box_gray">#F6F6F6</color>
+    <color name="upgrade_wallet_parent_background">#E3E3E3</color>
+    <color name="translucent_black">#66000000</color>
+    <color name="wallet_amount_txt_color">#00984b</color>
+
+
+
+
+    <color name="profile_bg_color">#F7F7F7</color>
+    <color name="profile_bg_text_color">#C6C6C6</color>
+    <color name="wallet_btn_color">#0E456E</color>
+    <color name="payment_unit_colour">#6DA6CE</color>
+    <color name="grey_color">#DADADA</color>
+    <color name="send_money_or_bg_color">#E9E9E9</color>
+
+    <color name="wallet_odd_row_color">#EAEAEA</color>
+    <color name="wallet_even_row_color">#F7F7F7</color>
+    <color name="loyalty_even_row_color">#F8F8F8</color>
+    <color name="wallet_amount_color">#D81313</color>
+    <color name="selected_tab_color">#003150</color>
+    <color name="deselected_tab_color">#0B1E45</color>
+    <color name="profile_image_bg_color">#EDEDED</color>
+    <color name="send_money_edt_bg_color">#E4E8EA</color>
+    <color name="wallet_unit_colour">#5AAEE9</color>
+    <color name="disable_wallet_unit_colour">#A5D0F2</color>
+    <color name="amount_background_color">#1C73B1</color>
+
+
+    <color name="header_color_code">#063553</color>
+    <color name="orange_color_code">#e05425</color>
+    <color name="side_panel_color_code">#23282e</color>
+    <color name="gray_color_code">#F6F5F6</color>
+    <color name="no_button_bg_color">#B3B3B3</color>
+
+
+    <color name="seperator_color">#6a8698</color>
+    <color name="contacts_seperator_color">#AAAAAA</color>
+
+    <color name="login_edt_color">#a5aeb6</color>
+    <color name="login_bottom_panel_text_color">#98acb8</color>
+
+    <color name="common_edt_hint_text_color">#a0a0a0</color>
+    <color name="list_header_user_color">#545454</color>
+    <color name="upgrade_wallet_item_text_color">#5A7F94</color>
+    <color name="upgrade_wallet_swipe_text_color">#808080</color>
+    <color name="upgrade_wallet_button_color">#D1D1D1</color>
+    <color name="finger_auth_success_color">#43A047</color>
+
+
+    <color name="pending_color">#063553</color>
+    <color name="accepted_color">#63AE41</color>
+    <color name="rejected_color">#E34F2F</color>
+    <color name="split_bill_details_bg_color">#F2F4F2</color>
+
+    <color name="colorCategoryText">#C5C4C4</color>
+    <color name="colorimageBackground">#D2D2D2</color>
+
+    <color name="chat_bubble_date_color">#80dedede</color>
+    <color name="divider_color">#e0e0e0</color>
+    <color name="selected_list_item_color">#e0e0e0</color>
+</resources>

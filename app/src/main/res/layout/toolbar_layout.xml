@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            android:visibility="visible"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <RelativeLayout
+                android:id="@+id/toolbar_search_rl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+            <ImageView
+                    android:id="@+id/searchbar_cross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_header_cross_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_alignParentRight="true"
+                    android:visibility="visible"/>
+
+            <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                    android:id="@+id/toolbar_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:theme="@style/AppTheme"
+                    android:textColorHint="@color/white"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:cursorVisible="true"
+                    android:maxLines="1"
+                    android:visibility="visible"
+                    android:layout_toLeftOf="@+id/searchbar_cross"/>
+
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:gravity="right">
+
+        <ImageView
+                android:id="@+id/iv_back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:contentDescription="@null"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_header_back_arrow"
+                android:visibility="gone" android:layout_alignParentLeft="true"/>
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/header_sub_icon_ll"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true">
+
+
+            <ImageView
+                    android:id="@+id/search_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toLeftOf="@+id/notification_frame"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_header_search_icon"
+                    android:visibility="gone"
+                    android:layout_marginRight="@dimen/_10sdp"/>
+
+
+            <FrameLayout
+                    android:id="@+id/notification_frame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:layout_toLeftOf="@+id/location_iv"
+                    android:visibility="gone">
+
+                <ImageView
+                        android:id="@+id/iv_notification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:src="@drawable/ic_header_notification_icon"/>
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                        android:id="@+id/tv_notification_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_11sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/notification_count_bg"
+                        android:paddingBottom="@dimen/_2sdp"
+                        android:paddingLeft="@dimen/_4sdp"
+                        android:paddingRight="@dimen/_4sdp"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_7sdp"
+                        android:visibility="visible"/>
+
+            </FrameLayout>
+            <ImageView
+                    android:id="@+id/location_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_header_merchant_location_icon"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_10sdp"/>
+
+            <ImageView
+                    android:id="@+id/share_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_header_share_icon"
+                    android:visibility="gone" android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_10sdp"/>
+
+
+        </LinearLayout>
+        <!--<ImageView
+            android:id="@+id/notification_iv"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_toLeftOf="@+id/location_iv"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible" />-->
+
+
+        <RelativeLayout
+                android:id="@+id/header_text_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true">
+
+
+            <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                    android:id="@+id/tv_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/_3sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp"
+                android:transitionName="splashTrans"
+                    android:text="@string/app_name"/>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+                android:id="@+id/logo_LL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+
+                android:orientation="horizontal" android:layout_alignParentLeft="true">
+
+
+            <ImageView
+                    android:id="@+id/iv_app_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="visible"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" android:layout_alignParentRight="true">
+
+            <ImageView
+                    android:id="@+id/iv_search_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="visible"/>
+
+            <ImageView
+                    android:id="@+id/iv_menu_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/_5sdp"
+                    android:visibility="visible"
+                    android:layout_marginRight="@dimen/_5sdp"/>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/colorPrimaryDark"
+            android:padding="@dimen/_10sdp"
+            android:id="@+id/searchbar_rl"
+            android:visibility="gone">
+
+        <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                android:id="@+id/searchbar_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_custom_bg"
+                android:drawableLeft="@drawable/info_icon"
+                android:gravity="left"
+                android:hint="@string/search_bar_hint"
+                android:drawablePadding="@dimen/_10sdp"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_gray"
+                android:textSize="@dimen/_10sdp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
