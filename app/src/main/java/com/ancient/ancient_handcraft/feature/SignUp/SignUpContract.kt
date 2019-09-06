@@ -8,15 +8,12 @@ import com.ancient.ancient_handcraft.base.BaseView
 
 interface SignUpContract {
 
-    interface View: BaseView<Presenter> {
+    interface View : BaseView<Presenter> {
         fun openDashboard()
-
+        fun openOtpVerification()
     }
 
-    interface Presenter: BasePresenter {
-        fun InitiateSignUpProcess(registerObj:RegisterPayloadPojo?)
-        //fun fetchLocation()
-        //fun countdownTimer()
-
+    interface Presenter : BasePresenter {
+        fun InitiateSignUpProcess(registerObj: RegisterPayloadPojo?)
     }
 }

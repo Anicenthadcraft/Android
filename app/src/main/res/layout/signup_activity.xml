@@ -1,201 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <include
-            android:id="@+id/include_toolbar"
-            layout="@layout/toolbar_layout" />
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                      android:orientation="vertical"
-                      android:layout_margin="@dimen/_10sdp">
+        android:id="@+id/include_toolbar"
+        layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
+
             <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                android:id="@+id/header_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_30sdp"
+                android:text="@string/signup_text"
+                android:textColor="@color/wallet_btn_color"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/name_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                    android:id="@+id/first_name_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_custom_bg"
+                    android:hint="@string/firstname_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_6sdp" />
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                    android:id="@+id/last_name_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_custom_bg"
+                    android:hint="@string/lastname_hint"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:padding="@dimen/_6sdp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/mobileno_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                    android:id="@+id/in_code_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_custom_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@string/india_code" />
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                    android:id="@+id/mobile_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edittext_custom_bg"
+                    android:hint="@string/mobileno_hint"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="@dimen/_6sdp" />
+            </LinearLayout>
+
+            <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                android:id="@+id/emailid_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/edittext_custom_bg"
+                android:hint="@string/only_email_id_text"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_6sdp" />
+
+            <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                android:id="@+id/password_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/edittext_custom_bg"
+                android:hint="@string/password_text"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:padding="@dimen/_6sdp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:id="@+id/header_tv"
-                    android:visibility="gone"
-                    android:text="@string/signup_text"
-                    android:textColor="@color/wallet_btn_color"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_margin="@dimen/_30sdp"
-            />
-            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                          android:orientation="horizontal"
-                          android:id="@+id/name_ll"
-                          android:layout_marginTop="@dimen/_10sdp">
-                <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/first_name_edt"
-                        android:layout_weight="1"
-                        android:background="@drawable/edittext_custom_bg"
-                        android:padding="@dimen/_6sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:inputType="text"
-                        android:hint="@string/firstname_hint"
-                    android:imeOptions="actionNext"
-                />
-                <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/last_name_edt"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:background="@drawable/edittext_custom_bg"
-                        android:padding="@dimen/_6sdp"
-                        android:inputType="text"
-                        android:hint="@string/lastname_hint"
-                    android:imeOptions="actionNext"
-                />
-            </LinearLayout>
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/radio_male_text"
+                    android:textColor="@color/dark_gray" />
 
-
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:id="@+id/mobileno_ll"
-                          android:layout_marginTop="@dimen/_10sdp">
-                <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/in_code_tv"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:background="@drawable/edittext_custom_bg"
-                        android:padding="@dimen/_8sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:text="@string/india_code"
-                />
-                <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/mobile_edt"
-                        android:layout_weight="4"
-                        android:maxLength="10"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:background="@drawable/edittext_custom_bg"
-                        android:padding="@dimen/_6sdp"
-                        android:inputType="number"
-                        android:hint="@string/mobileno_hint"
-                />
-            </LinearLayout>
-            <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/emailid_edt"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/edittext_custom_bg"
-                    android:padding="@dimen/_6sdp"
-                    android:inputType="textEmailAddress"
-                    android:hint="@string/only_email_id_text"
-                android:imeOptions="actionNext"
-            />
-            <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/password_edt"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/edittext_custom_bg"
-                    android:padding="@dimen/_6sdp"
-                    android:inputType="textPassword"
-                    android:hint="@string/password_text"
-                android:imeOptions="actionDone"
-            />
-
-            <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:orientation="horizontal" android:layout_marginTop="@dimen/_10sdp">
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="@string/radio_male_text" android:padding="@dimen/_10sdp" android:textColor="@color/dark_gray"/>
-                <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content"
-                             android:text="@string/radio_female_text" android:padding="@dimen/_10sdp" android:textColor="@color/dark_gray"/>
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/radio_female_text"
+                    android:textColor="@color/dark_gray" />
 
             </RadioGroup>
 
-            <LinearLayout android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_gravity="right"
-                          android:layout_marginTop="@dimen/_15sdp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="horizontal">
+
                 <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/already_member_text"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/_12sdp"
-                />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/already_member_text"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_12sdp" />
+
                 <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/login_tv"
-                        android:layout_gravity="center"
-                        android:text="@string/login_text"
-                        android:paddingLeft="@dimen/_2sdp"
-                        android:textColor="@color/contact_username_color"
-                        android:textSize="@dimen/_12sdp"
-                />
+                    android:id="@+id/login_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingLeft="@dimen/_2sdp"
+                    android:text="@string/login_text"
+                    android:textColor="@color/contact_username_color"
+                    android:textSize="@dimen/_12sdp" />
             </LinearLayout>
+
             <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                    android:id="@+id/signup_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/checkbox_ll"
-                    android:background="@drawable/button_bg"
-                    android:gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/signup_text"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"
-                app:customFont="fonts/Lato-Bold.ttf"/>
+                android:id="@+id/signup_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkbox_ll"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/button_bg"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/signup_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                app:customFont="fonts/Lato-Bold.ttf" />
+
             <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_15sdp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp">
 
                 <RelativeLayout
-                        android:id="@+id/login_facebook_RL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/social_button_bg"
-                        android:gravity="center"
-                        android:paddingBottom="@dimen/_3sdp"
-                        android:paddingTop="@dimen/_3sdp">
+                    android:id="@+id/login_facebook_RL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/social_button_bg"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp">
 
                     <ImageView
-                            android:id="@+id/facebook_icon_IV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_7sdp"
-                            android:padding="@dimen/_5sdp"
-                            android:src="@drawable/ic_login_facebook_icon" />
+                        android:id="@+id/facebook_icon_IV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_7sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/ic_login_facebook_icon" />
 
                     <View
-                            android:id="@+id/view"
-                            android:layout_width="@dimen/_1sdp"
-                            android:layout_height="@dimen/_25sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/_7sdp"
-                            android:layout_toRightOf="@id/facebook_icon_IV"
-                            android:background="@color/vertical_line" />
+                        android:id="@+id/view"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/_7sdp"
+                        android:layout_toRightOf="@id/facebook_icon_IV"
+                        android:background="@color/vertical_line" />
 
                     <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                            android:id="@+id/facebook_TV"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toRightOf="@id/view"
-                            android:gravity="center"
-                            android:text="@string/login_with_facebook_text"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_12sdp"
-                        app:customFont="fonts/Lato-Bold.ttf"/>
+                        android:id="@+id/facebook_TV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/view"
+                        android:gravity="center"
+                        android:text="@string/login_with_facebook_text"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:customFont="fonts/Lato-Bold.ttf" />
 
                     <!--<com.facebook.login.widget.LoginButton
                             android:id="@+id/login_button"
@@ -210,18 +239,27 @@
 
 
                 <ProgressBar
-                        android:id="@+id/fbprogressbar"
-                        style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center_vertical|right"
-                        android:layout_marginRight="@dimen/_20sdp"
-                        android:background="@android:color/transparent"
-                        android:indeterminate="true"
-                        android:indeterminateTint="@color/white"
-                        android:indeterminateTintMode="src_atop"
-                        android:visibility="gone" />
+                    android:id="@+id/fbprogressbar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@android:color/transparent"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/white"
+                    android:indeterminateTintMode="src_atop"
+                    android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/loader_layout"
+            android:visibility="gone" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

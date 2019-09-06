@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import com.ancient.ancient_handcraft.Utils.AnimUtils;
 
 public class MyLinearLayout extends LinearLayout {
-	private float scale = AnimUtils.BIG_SCALE;
+	private float scale = AnimUtils.INSTANCE.getBIG_SCALE();
 
 	public MyLinearLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);

@@ -19,6 +19,8 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.splash_activity.*
 
 class SplashActivity : BaseActivity(),SplashContract.View {
+
+
     private lateinit var mPresenter: SplashContract.Presenter
     private var context: Context?=null
 
@@ -43,10 +45,8 @@ class SplashActivity : BaseActivity(),SplashContract.View {
         var compatTrans = ActivityOptionsCompat.makeSceneTransitionAnimation(this,splash_base_tv,"splashTrans")
         startActivity(Intent(this@SplashActivity, LoginActivity::class.java),compatTrans.toBundle())
         //overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        //finish()
+        finish()
     }
-
-
 
     override fun openDashboard() {
 
@@ -60,5 +60,9 @@ class SplashActivity : BaseActivity(),SplashContract.View {
 
     override fun addDisposable(disposable: Disposable) {
         disposables.add(disposable)
+    }
+
+    override fun showErrorMessage(msg: String) {
+
     }
 }

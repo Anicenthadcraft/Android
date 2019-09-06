@@ -1,6 +1,8 @@
 package com.ancient.ancient_handcraft.webhelper.api
 
+import com.ancient.ancient_handcraft.app.PojoObj.Login.LoginResponse
 import com.ancient.ancient_handcraft.app.PojoObj.SignUp.RegisterResponse
+import com.ancient.ancient_handcraft.app.PojoObj.VerifyOTP.VerifyOtpResponse
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -19,6 +21,19 @@ interface ApiServices {
         @Field("password") password: String
     ): Observable<RegisterResponse>
 
+    @FormUrlEncoded
+    @POST("v1/register")
+    fun LoginUser(
+        @Field("mobileNo") mobileNo: String,
+        @Field("password") password: String
+    ): Observable<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("v1/verify-otp")
+    fun VerifyOTP(
+        @Field("mobileNo") mobileNo: String,
+        @Field("otp") otp: String
+    ): Observable<VerifyOtpResponse>
 
 }
 

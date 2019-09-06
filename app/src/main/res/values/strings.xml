@@ -29,8 +29,9 @@
     <string name="firstname_blank_error">Please enter First Name</string>
     <string name="lastname_blank_error">Please enter Last Name</string>
     <string name="mobileno_blank_error">Please enter Mobile Number</string>
-    <string name="mobileno_valid_error">Please enter valid mobileno</string>
+    <string name="mobileno_valid_error">Please enter valid mobileno, mobile no must have 10 digits</string>
     <string name="email_blank_error">Please enter Email Id</string>
+    <string name="email_valid_error">Please enter valid Email Id</string>
     <string name="password_blank_error">Please enter password</string>
     <string name="password_valid_error">Please enter valid password</string>
 
@@ -52,6 +53,10 @@
     <string name="category_text">Category</string>
     <string name="offers_text">Offers</string>
     <string name="craft_text">Craft</string>
+    <string name="success">success</string>
+    <string name="something_went_wrong">Something went wrong</string>
 
-
+    <string name="verify_otp_header">Verify OTP</string>
+    <string name="verifyotp_hint">Enter OTP</string>
+    <string name="verifyotp_blank_error">Please enter OTP</string>
 </resources>

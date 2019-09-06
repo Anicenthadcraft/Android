@@ -88,11 +88,11 @@ public class MyPagerAdapter extends FragmentPagerAdapter implements
 	{
 
 		// make the first pager bigger than others
-		if (position == AnimUtils.FIRST_PAGE)
-			scale = AnimUtils.BIG_SCALE;
+		if (position == AnimUtils.INSTANCE.getFIRST_PAGE())
+			scale = AnimUtils.INSTANCE.getBIG_SCALE();
 		else
 		{
-			scale = AnimUtils.SMALL_SCALE;
+			scale = AnimUtils.INSTANCE.getSMALL_SCALE();
 			IsBlured=true;
 
 		}
@@ -149,15 +149,15 @@ public class MyPagerAdapter extends FragmentPagerAdapter implements
 				ViewHelper.setRotationY(nextnext, -minDegree);
 			}
 			if (cur != null) {
-				cur.setScaleBoth(AnimUtils.BIG_SCALE
-						- AnimUtils.DIFF_SCALE * positionOffset);
+				cur.setScaleBoth(AnimUtils.INSTANCE.getBIG_SCALE()
+						- AnimUtils.INSTANCE.getDIFF_SCALE() * positionOffset);
 
 				ViewHelper.setRotationY(cur, 0);
 			}
 
 			if (next != null) {
-				next.setScaleBoth(AnimUtils.SMALL_SCALE
-						+ AnimUtils.DIFF_SCALE * positionOffset);
+				next.setScaleBoth(AnimUtils.INSTANCE.getSMALL_SCALE()
+						+ AnimUtils.INSTANCE.getDIFF_SCALE() * positionOffset);
 				ViewHelper.setRotationY(next, -minDegree);
 			}
 			if (prev != null) {

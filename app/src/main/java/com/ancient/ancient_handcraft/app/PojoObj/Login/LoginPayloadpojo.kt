@@ -1,9 +1,8 @@
-package com.ancient.ancient_handcraft.app.PojoObj.SignUp
+package com.ancient.ancient_handcraft.app.PojoObj.Login
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
-data class RegisterPayloadPojo(
+data class LoginPayloadpojo (
     @SerializedName("firstName") var firstName: String = "",
     @SerializedName("lastName") var lastName: String = "",
     @SerializedName("mobileNo") var mobileNo: String = "",
@@ -12,5 +11,8 @@ data class RegisterPayloadPojo(
     @SerializedName("otp") var otp: Int = 0,
     @SerializedName("isAdmin") var isAdmin: Boolean = false,
     @SerializedName("password") var password: String = "",
-    @SerializedName("id") var id: Int = 0
-) : Serializable
+    @SerializedName("id") var id: Int = 0,
+    @SerializedName("type") var type: String = "",
+    @SerializedName("token") var token: String = "",
+    @SerializedName("password") var refreshToken: String = ""
+)

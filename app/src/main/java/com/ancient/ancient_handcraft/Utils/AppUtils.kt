@@ -71,14 +71,12 @@ class AppUtils {
 
 
         fun isValidateMobileLogin(pHoneNo: String): Boolean {
-            var isValidate: Boolean = false
             if (pHoneNo.length > 0 && pHoneNo.length < 8) {
-                isValidate = false
+                return false
             } else {
-                isValidate = true
+                return true
             }
-            //return pHoneNo.length == 10
-            return isValidate
+
         }
 
         public fun getUriToDrawable(
@@ -95,40 +93,33 @@ class AppUtils {
         }
 
         fun mobileNumberForgotPswValidation(phoneNo: String): Boolean {
-            var isValidate: Boolean = false
+
             if (phoneNo.length > 0 && phoneNo.length < 8) {
-                isValidate = false
+                return false
             } else if (phoneNo.length > 0 && phoneNo.length > 10) {
-                isValidate = false
+                return false
             } else {
-                isValidate = true
+                return true
             }
-            //return pHoneNo.length == 10
-            return isValidate
         }
 
 
         fun mobileNumberForgotPswExtendedValidation(phoneNo: String): Boolean {
-            var isValidate: Boolean = false
             if (phoneNo.length > 0 && (phoneNo.length < 12 || phoneNo.length > 14)) {
-                isValidate = false
+                return false
             } else {
-                isValidate = true
+                return true
             }
-            //return pHoneNo.length == 10
-            return isValidate
+
         }
 
 
         fun forgotPswMobileValidate(phoneNo: String): Boolean {
-            var isValidate: Boolean = false
             if (phoneNo.length > 0 && (phoneNo.length < 8 || phoneNo.length > 10)) {
-                isValidate = false
+                return false
             } else {
-                isValidate = true
+                return true
             }
-            //return pHoneNo.length == 10
-            return isValidate
         }
 
 
@@ -369,8 +360,7 @@ class AppUtils {
         }
 
         fun isValidateMobile(pHoneNo: String): Boolean {
-
-            return pHoneNo.length == 14
+            return pHoneNo.length == 10
         }
 
         fun isValidateMobileForgotPassword(pHoneNo: String): Boolean {

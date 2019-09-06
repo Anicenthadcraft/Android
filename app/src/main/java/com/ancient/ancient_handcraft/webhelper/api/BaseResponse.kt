@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 open class BaseResponse(
-    @SerializedName("code") var code: Int=0,
-    @SerializedName("details") var details: String = ""
+    @SerializedName("status") var status: Int = 0,
+    @SerializedName("success") var success: Boolean = false,
+    @SerializedName("code") var code: String = "",
+    @SerializedName("message") var message: ArrayList<ErrorResponsePojo>? = null
 ) : Serializable
