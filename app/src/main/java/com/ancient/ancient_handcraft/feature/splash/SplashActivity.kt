@@ -46,19 +46,19 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     override fun moveToNextActivity() {
         if (appData?.userSession?.isLoggedIn!!) {
             startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         } else {
-            var compatTrans = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-                splash_base_tv,
-                "splashTrans"
-            )
-            startActivity(
-                Intent(this@SplashActivity, LoginActivity::class.java),
-                compatTrans.toBundle()
-            )
+//            var compatTrans = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                this,
+//                splash_base_tv,
+//                "splashTrans"
+//            )
+//            startActivity(
+//                Intent(this@SplashActivity, LoginActivity::class.java),
+//                compatTrans.toBundle()
+//            )
+            startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
         }
-        //overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         finish()
     }
 
