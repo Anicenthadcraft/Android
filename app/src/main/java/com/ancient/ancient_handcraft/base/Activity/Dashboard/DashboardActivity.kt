@@ -2,12 +2,13 @@ package com.ancient.ancient_handcraft.base.Activity.Dashboard
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.se.omapi.Session
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -18,11 +19,14 @@ import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.Utils.AnimUtils
 import com.ancient.ancient_handcraft.Utils.AppUtils
 import com.ancient.ancient_handcraft.Utils.AppUtils.Companion.showToastMsg
+import com.ancient.ancient_handcraft.app.AppData
 import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.NavDrawer_item_model
+import com.ancient.ancient_handcraft.app.PojoObj.SignUp.UserSession
 import com.ancient.ancient_handcraft.app.type.FragType
 import com.ancient.ancient_handcraft.app.type.TopBarConfig
 import com.ancient.ancient_handcraft.feature.Dashboard.DashboardFragment
 import com.ancient.ancient_handcraft.feature.HandcraftItemList.HandcraftItemListFragment
+import com.ancient.ancient_handcraft.feature.Login.LoginActivity
 import com.ancient.ancient_handcraft.feature.ProductDetailsFragment.ProductDetailsFragment
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
@@ -36,7 +40,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var context: Context
     private lateinit var mDrawerToggle: ActionBarDrawerToggle
-
+    private var appData: AppData? = null
     private val imageLoader = ImageLoader.getInstance()
     private var options: DisplayImageOptions? = null
 
@@ -57,13 +61,14 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun initView() {
-
+        appData = AppData(context)
         toolbar.setPadding(0, toolbar.paddingTop, 0, toolbar.paddingBottom)
         toolbar.setTitle(R.string.blank)
         toolbar.setSubtitle(R.string.blank)
 
         mDrawerToggle = object : ActionBarDrawerToggle(
-            this, drawerlayout, toolbar, R.string.blank, R.string.blank) {
+            this, drawerlayout, toolbar, R.string.blank, R.string.blank
+        ) {
 
             override fun onDrawerClosed(view: View) {
                 super.onDrawerClosed(view)
@@ -108,11 +113,31 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             getMenuItems(),
             object : OnItemClickInterface {
                 override fun onItemClick(position: Int, item: NavDrawer_item_model) {
-                    Toast.makeText(context, item.itemName, Toast.LENGTH_LONG).show()
+                    if (item.itemName == "Logout") {
+                        initiateLogoutProcess()
+                    }
                 }
-
             })
         SearchPanelVisibility()
+
+        setUserInfo()
+    }
+
+    private fun setUserInfo() {
+        user_name_TV.text =
+            appData?.userSession?.user!!.firstName + " " + appData?.userSession?.user!!.lastName
+    }
+
+    private fun initiateLogoutProcess() {
+        val session = UserSession(false, null)
+        appData?.userSession = session
+        AppUtils.showToastMsg(
+            context,
+            resources.getString(R.string.logout_success_text)
+        )
+        startActivity(Intent(this@DashboardActivity, LoginActivity::class.java))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
     }
 
     private fun getMenuItems(): ArrayList<NavDrawer_item_model> {
@@ -133,15 +158,19 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializeImageLoader() {
-        options = DisplayImageOptions.Builder().showImageOnLoading(resources.getDrawable(R.drawable.ic_side_panel_profile_placeholder)
-        ).showImageForEmptyUri(resources.getDrawable(R.drawable.ic_side_panel_profile_placeholder)).showImageOnFail(resources.getDrawable(R.drawable.ic_side_panel_profile_placeholder))
-            .cacheInMemory(true).cacheOnDisk(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565).postProcessor { bmp ->
+        options = DisplayImageOptions.Builder().showImageOnLoading(
+            resources.getDrawable(R.drawable.ic_side_panel_profile_placeholder)
+        ).showImageForEmptyUri(resources.getDrawable(R.drawable.ic_side_panel_profile_placeholder))
+            .showImageOnFail(resources.getDrawable(R.drawable.ic_side_panel_profile_placeholder))
+            .cacheInMemory(true).cacheOnDisk(true).considerExifParams(true)
+            .bitmapConfig(Bitmap.Config.RGB_565).postProcessor { bmp ->
                 // return Bitmap.createScaledBitmap(bmp, 480, 370,
                 // false);
                 bmp
             }.build()
         imageLoader.init(ImageLoaderConfiguration.createDefault(baseContext))
     }
+
     fun getFragment(): Fragment {
         return supportFragmentManager.findFragmentById(R.id.frame_layout_container)!!
     }
@@ -167,14 +196,14 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
                 super.onBackPressed()
             } else {
-                showToastMsg(this,getString(R.string.alert_exit))
+                showToastMsg(this, getString(R.string.alert_exit))
                 //Toast.makeText(this,getString(R.string.alert_exit),Toast.LENGTH_SHORT).show()
             }
 
             backpressed = System.currentTimeMillis()
         } /*else if (getCurrentFragType() == FragType.FragmentMyWallet)
             loadFragment(FragType.DashboardFragment, false, "")*/
-         else {
+        else {
             super.onBackPressed()
         }
     }
@@ -192,7 +221,11 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun getFragInstance(mFragType: FragType, initializeObject: Any, enableFragGeneration: Boolean): Fragment? {
+    private fun getFragInstance(
+        mFragType: FragType,
+        initializeObject: Any,
+        enableFragGeneration: Boolean
+    ): Fragment? {
         var mFragment: Fragment? = null
         AppUtils.hideSoftKeyboard(context as Activity)
         when (mFragType) {
@@ -212,7 +245,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 setDrawerOpenMode()
             }
 
-            FragType.HandcraftItemListFragment->{
+            FragType.HandcraftItemListFragment -> {
                 if (enableFragGeneration) {
                     mFragment = HandcraftItemListFragment()
                 }
@@ -228,7 +261,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 setDrawerOpenMode()
             }
 
-            FragType.ProductDetailsFragment->{
+            FragType.ProductDetailsFragment -> {
                 if (enableFragGeneration) {
                     mFragment = ProductDetailsFragment()
                 }
@@ -316,7 +349,12 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         val mTransaction = supportFragmentManager.beginTransaction()
-        mTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+        mTransaction.setCustomAnimations(
+            android.R.anim.fade_in,
+            android.R.anim.fade_out,
+            android.R.anim.fade_in,
+            android.R.anim.fade_out
+        )
 
         /* if (getCurrentFragType() == FragType.FragmentInputPin) {
              mTransaction.setCustomAnimations(R.anim.slide_in_up, R.anim.slide_in_down, R.anim.slide_out_down, R.anim.slide_out_up);
@@ -324,10 +362,18 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
          }*/
         if (addToStack) {
-            mTransaction.add(R.id.frame_layout_container, getFragInstance(mFragType, initializeObject, true)!!, mFragType.toString())
+            mTransaction.add(
+                R.id.frame_layout_container,
+                getFragInstance(mFragType, initializeObject, true)!!,
+                mFragType.toString()
+            )
             mTransaction.addToBackStack(mFragType.toString()).commitAllowingStateLoss()
         } else {
-            mTransaction.replace(R.id.frame_layout_container, getFragInstance(mFragType, initializeObject, true)!!, mFragType.toString())
+            mTransaction.replace(
+                R.id.frame_layout_container,
+                getFragInstance(mFragType, initializeObject, true)!!,
+                mFragType.toString()
+            )
             mTransaction.commitAllowingStateLoss()
         }
 
@@ -377,6 +423,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     fun setDrawerLockMode() {
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
+
     /**
      * Making Toolbar visible/Invisible
      */
@@ -472,11 +519,11 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         share_iv.visibility = View.GONE
     }
 
-    fun SearchPanelVisibility(){
+    fun SearchPanelVisibility() {
         searchbar_rl.visibility = View.VISIBLE
     }
 
-    fun SearchPanelInVisibility(){
+    fun SearchPanelInVisibility() {
         searchbar_rl.visibility = View.GONE
     }
 

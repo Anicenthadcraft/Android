@@ -11,7 +11,7 @@ import retrofit2.http.POST
 interface ApiServices {
 
     @FormUrlEncoded
-    @POST("v1/register")
+    @POST("api/v1/register")
     fun registerUser(
         @Field("firstName") firstName: String,
         @Field("lastName") lastName: String,
@@ -22,14 +22,14 @@ interface ApiServices {
     ): Observable<RegisterResponse>
 
     @FormUrlEncoded
-    @POST("v1/register")
+    @POST("api/v1/login")
     fun LoginUser(
         @Field("mobileNo") mobileNo: String,
         @Field("password") password: String
     ): Observable<LoginResponse>
 
     @FormUrlEncoded
-    @POST("v1/verify-otp")
+    @POST("api/v1/verify-otp")
     fun VerifyOTP(
         @Field("mobileNo") mobileNo: String,
         @Field("otp") otp: String

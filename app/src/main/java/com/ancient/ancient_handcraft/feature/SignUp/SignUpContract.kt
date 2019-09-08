@@ -1,7 +1,6 @@
 package com.ancient.ancient_handcraft.feature.SignUp
 
-import android.location.Location
-import com.ancient.ancient_handcraft.app.PojoObj.SignUp.RegisterPayloadPojo
+import com.ancient.ancient_handcraft.app.PojoObj.SignUp.UserPayloadPojo
 import com.ancient.ancient_handcraft.base.BasePresenter
 import com.ancient.ancient_handcraft.base.BaseView
 
@@ -10,10 +9,13 @@ interface SignUpContract {
 
     interface View : BaseView<Presenter> {
         fun openDashboard()
-        fun openOtpVerification()
+        fun openOtpVerification(
+            otp: UserPayloadPojo?,
+            otp1: Int
+        )
     }
 
     interface Presenter : BasePresenter {
-        fun InitiateSignUpProcess(registerObj: RegisterPayloadPojo?)
+        fun InitiateSignUpProcess(userObj: UserPayloadPojo?)
     }
 }

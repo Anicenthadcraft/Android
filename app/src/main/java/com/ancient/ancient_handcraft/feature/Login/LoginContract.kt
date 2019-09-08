@@ -1,7 +1,5 @@
 package com.ancient.ancient_handcraft.feature.Login
 
-import com.ancient.ancient_handcraft.app.PojoObj.Login.LoginPayloadpojo
-import com.ancient.ancient_handcraft.app.PojoObj.SignUp.RegisterPayloadPojo
 import com.ancient.ancient_handcraft.base.BasePresenter
 import com.ancient.ancient_handcraft.base.BaseView
 

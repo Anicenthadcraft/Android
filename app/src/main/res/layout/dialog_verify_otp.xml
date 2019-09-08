@@ -1,73 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#40000000"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="#40000000"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="@dimen/_10sdp">
+            android:orientation="vertical">
 
-            <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/dialog_header_TV"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:text="@string/verify_otp_header"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13sdp" />
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                    android:id="@+id/dialog_header_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/verify_otp_header"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+
+            <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
+                android:id="@+id/verify_otp_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/edittext_custom_bg"
+                android:hint="@string/verifyotp_hint"
+                android:inputType="number"
+                android:maxLength="6"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                    android:id="@+id/submit_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="5"
+                    android:background="@drawable/button_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/_7sdp"
+                    android:text="@string/submit_text"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
+
+                <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
+                    android:id="@+id/cancel_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="5"
+                    android:background="@drawable/no_button_bg"
+                    android:gravity="center"
+                    android:padding="@dimen/_7sdp"
+                    android:text="@string/cancel_text"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <com.ancient.ancient_handcraft.app.widget.AppCustomEditText
-            android:id="@+id/verify_otp_edt"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_weight="4"
-            android:background="@drawable/edittext_custom_bg"
-            android:hint="@string/verifyotp_hint"
-            android:inputType="number"
-            android:maxLength="10"
-            android:padding="@dimen/_10sdp"
-            android:layout_margin="@dimen/_10sdp"/>
+            android:layout_height="@dimen/_145sdp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_30sdp">
+            <include
+                layout="@layout/loader_layout"
+                android:visibility="gone" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </RelativeLayout>
 
-
-
-            <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-                android:id="@+id/submit_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:background="@drawable/button_bg"
-                android:gravity="center"
-                android:padding="@dimen/_7sdp"
-                android:text="@string/submit_text"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13sdp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 </RelativeLayout>

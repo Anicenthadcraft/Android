@@ -34,7 +34,7 @@ object ApiClient {
             .build()
 
         Retrofit.Builder()
-            //.baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

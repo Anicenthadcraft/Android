@@ -8,7 +8,7 @@ interface BaseView<T> {
     fun setPresenter(presenter: T)
     fun showLoader()
     fun hideLoader()
-    fun showErrorMessage(msg: String)
+    fun showMessage(msg: String)
     fun addDisposable(disposable: Disposable)
 
 }

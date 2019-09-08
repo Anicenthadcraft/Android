@@ -7,5 +7,6 @@ open class BaseResponse(
     @SerializedName("status") var status: Int = 0,
     @SerializedName("success") var success: Boolean = false,
     @SerializedName("code") var code: String = "",
-    @SerializedName("message") var message: ArrayList<ErrorResponsePojo>? = null
+    @SerializedName("message") var message: String = "",
+    @SerializedName("messages") var messages: ArrayList<ErrorResponsePojo>? = null
 ) : Serializable

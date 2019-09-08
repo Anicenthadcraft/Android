@@ -20,7 +20,7 @@ class SplashPresenter(val view: SplashContract.View) : SplashContract.Presenter 
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                moveToLogin()
+                moveToNextActivity()
             },
                 {
                     Log.e("error", "" + it)
@@ -29,8 +29,7 @@ class SplashPresenter(val view: SplashContract.View) : SplashContract.Presenter 
                 })
     }
 
-    private fun moveToLogin() {
-        view.openLoginActivity()
+    private fun moveToNextActivity() {
+        view.moveToNextActivity()
     }
-
 }

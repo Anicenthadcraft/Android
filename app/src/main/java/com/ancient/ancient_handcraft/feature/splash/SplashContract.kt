@@ -8,9 +8,7 @@ import com.ancient.ancient_handcraft.base.BaseView
 interface SplashContract {
 
     interface View: BaseView<Presenter> {
-        fun openLoginActivity()
-        fun openDashboard()
-
+        fun moveToNextActivity()
     }
 
     interface Presenter: BasePresenter {

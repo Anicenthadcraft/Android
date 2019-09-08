@@ -3,32 +3,34 @@ package com.ancient.ancient_handcraft.feature.Login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.ancient.ancient_handcraft.AncientHandcraftApplication
 import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.Utils.AppUtils
-import com.ancient.ancient_handcraft.app.PojoObj.Login.LoginPayloadpojo
-import com.ancient.ancient_handcraft.app.PojoObj.SignUp.RegisterPayloadPojo
 import com.ancient.ancient_handcraft.base.Activity.Dashboard.DashboardActivity
 import com.ancient.ancient_handcraft.base.BaseActivity
 import com.ancient.ancient_handcraft.feature.ForgotPassword.ForgotPasswordActivity
 import com.ancient.ancient_handcraft.feature.SignUp.SignUpActivity
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.dialog_verify_otp.view.*
 import kotlinx.android.synthetic.main.loader_layout.*
 import kotlinx.android.synthetic.main.login_activity.*
-import kotlinx.android.synthetic.main.signup_activity.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
+
 
 class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
 
     lateinit var loginPresenter: LoginContract.Presenter
+    val maxLengthofEditText = 10
     private var context: Context? = null
 
     override fun onCreated(savedInstanceState: Bundle?) {
         setContentView(R.layout.login_activity)
+        AncientHandcraftApplication.Companion.setCurrentActivity =
+            LoginActivity::class.java!!.getSimpleName()!!
         initView()
-        setPresenter(LoginPresenter(this,context!!))
+        setPresenter(LoginPresenter(this, context!!))
         loginPresenter.start()
     }
 
@@ -36,13 +38,21 @@ class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
         get() = mobile_no_edt.text.toString() ?: ""
 
     val password
-        get() = password_edt.text.toString() ?: ""
+        get() = login_password.text.toString() ?: ""
 
     private fun initView() {
         context = this
+        mobile_no_edt.setFilters(
+            arrayOf<InputFilter>(
+                InputFilter.LengthFilter(
+                    maxLengthofEditText
+                )
+            )
+        )
         signup_tv.setOnClickListener(this)
         forgot_password_tv.setOnClickListener(this)
         login_btn.setOnClickListener(this)
+
         tv_header.text = "Login"
         SearchPanelInVisibility()
     }
@@ -72,11 +82,12 @@ class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
                     userMobile, password
                 )
             } else
-                showErrorMessage(context!!.resources.getString(R.string.no_internet_connection_check))
+                showMessage(context!!.resources.getString(R.string.no_internet_connection_check))
         }
     }
 
     fun validateInputs(): Boolean {
+        AppUtils.hideSoftKeyboard(this)
         var isValidate = false
         if (userMobile.isNullOrEmpty()) {
             AppUtils.showToastMsg(
@@ -94,10 +105,6 @@ class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
                 context!!.resources.getString(R.string.password_blank_error)
             )
         } else {
-            AppUtils.showToastMsg(
-                context!!,
-                context!!.resources.getString(R.string.success)
-            )
             isValidate = true
         }
         return isValidate
@@ -123,6 +130,7 @@ class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
     override fun openDashboard() {
         startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
     }
 
     override fun openSignUp() {
@@ -151,7 +159,7 @@ class LoginActivity : BaseActivity(), LoginContract.View, View.OnClickListener {
         disposables.add(disposable)
     }
 
-    override fun showErrorMessage(msg: String) {
+    override fun showMessage(msg: String) {
         AppUtils.showToastMsg(
             context!!,
             msg
