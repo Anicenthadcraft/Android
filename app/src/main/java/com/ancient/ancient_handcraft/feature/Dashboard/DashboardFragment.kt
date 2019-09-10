@@ -20,31 +20,42 @@ import com.ancient.ancient_handcraft.app.carauselview.MyPagerAdapter
 import com.ancient.ancient_handcraft.app.type.FragType
 import com.ancient.ancient_handcraft.autoscrollviewpager.AutoScrollViewPager
 import com.ancient.ancient_handcraft.base.Activity.Dashboard.*
+import com.ancient.ancient_handcraft.feature.Login.LoginPresenter
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import me.relex.circleindicator.CircleIndicator
 
-class DashboardFragment : Fragment(), View.OnClickListener {
+class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.View {
+
+
     val FIRST_PAGE = 1
     private lateinit var mContext: Context
     private var rootView: View? = null
     private lateinit var adapter: MyPagerAdapter
     private lateinit var featuredAdapter: FraturedRecyclerView
-    private lateinit var latestAdapter : LatestProductRecyclerView
+    private lateinit var latestAdapter: LatestProductRecyclerView
     lateinit var appCtx: AncientHandcraftApplication
     private lateinit var pager: AutoScrollViewPager
     private lateinit var indicator: CircleIndicator
     private lateinit var carouselView: CarouselView
     private var featuredArray: ArrayList<Featured_item_model> = ArrayList<Featured_item_model>()
-    private var latestArray : ArrayList<Latest_product_model> = ArrayList<Latest_product_model>()
-    private var sampleImages = intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
+    private var latestArray: ArrayList<Latest_product_model> = ArrayList<Latest_product_model>()
+    private var sampleImages =
+        intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
+    private var mPresenter: DashboardContract.Presenter? = null
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        setPresenter(DashboardPresenter(this))
+        mPresenter?.start()
         initView(view)
         return view
     }
@@ -72,8 +83,9 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setFeaturedAdapter(rootView: View) {
-        rootView.featured_rv.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-        var decoration = RecyclerViewMargin(20,featuredArray.size)
+        rootView.featured_rv.layoutManager =
+            LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        var decoration = RecyclerViewMargin(20, featuredArray.size)
 
         featuredAdapter = FraturedRecyclerView(
             mContext,
@@ -88,14 +100,18 @@ class DashboardFragment : Fragment(), View.OnClickListener {
         rootView.featured_rv.addItemDecoration(decoration)
     }
 
-    private fun setLatestProductAdapter(rootView: View){
-        rootView.latest_product_rv.layoutManager = GridLayoutManager(mContext,2)
+    private fun setLatestProductAdapter(rootView: View) {
+        rootView.latest_product_rv.layoutManager = GridLayoutManager(mContext, 2)
         latestAdapter = LatestProductRecyclerView(
             mContext,
             latestArray,
             object : OnLatestItemClickInterface {
                 override fun onItemClick(position: Int, item: Latest_product_model) {
-                    (mContext as DashboardActivity).loadFragment(FragType.HandcraftItemListFragment, true, "")
+                    (mContext as DashboardActivity).loadFragment(
+                        FragType.HandcraftItemListFragment,
+                        true,
+                        ""
+                    )
                 }
 
             })
@@ -103,45 +119,44 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     }
 
 
-
     internal var imageListener: ImageListener =
         ImageListener { position, imageView -> imageView.setImageResource(sampleImages[position]) }
 
     private fun bannerImageList() {
-        var obj: BannerObject = BannerObject("1", "drawable://"+R.drawable.image5)
+        var obj: BannerObject = BannerObject("1", "drawable://" + R.drawable.image5)
         bannerArray.add(obj)
-        var obj1: BannerObject = BannerObject("2", "drawable://"+R.drawable.image13)
+        var obj1: BannerObject = BannerObject("2", "drawable://" + R.drawable.image13)
         bannerArray.add(obj1)
-        var obj2: BannerObject = BannerObject("3", "drawable://"+R.drawable.image20)
+        var obj2: BannerObject = BannerObject("3", "drawable://" + R.drawable.image20)
         bannerArray.add(obj2)
-        var obj3: BannerObject = BannerObject("3", "drawable://"+R.drawable.image22)
+        var obj3: BannerObject = BannerObject("3", "drawable://" + R.drawable.image22)
         bannerArray.add(obj3)
     }
 
     private fun featuredImageList() {
         var obj: Featured_item_model =
-            Featured_item_model("1", "drawable://"+R.drawable.image42)
+            Featured_item_model("1", "drawable://" + R.drawable.image42)
         featuredArray.add(obj)
         var obj1: Featured_item_model =
-            Featured_item_model("2", "drawable://"+R.drawable.image39)
+            Featured_item_model("2", "drawable://" + R.drawable.image39)
         featuredArray.add(obj1)
         var obj2: Featured_item_model =
-            Featured_item_model("3", "drawable://"+R.drawable.image35)
+            Featured_item_model("3", "drawable://" + R.drawable.image35)
         featuredArray.add(obj2)
     }
 
     private fun latestImageList() {
         var obj: Latest_product_model =
-            Latest_product_model("1", "drawable://"+R.drawable.image9)
+            Latest_product_model("1", "drawable://" + R.drawable.image9)
         latestArray.add(obj)
         var obj1: Latest_product_model =
-            Latest_product_model("2", "drawable://"+R.drawable.image12)
+            Latest_product_model("2", "drawable://" + R.drawable.image12)
         latestArray.add(obj1)
         var obj2: Latest_product_model =
-            Latest_product_model("3", "drawable://"+R.drawable.image23)
+            Latest_product_model("3", "drawable://" + R.drawable.image23)
         latestArray.add(obj2)
         var obj3: Latest_product_model =
-            Latest_product_model("3", "drawable://"+R.drawable.image37)
+            Latest_product_model("3", "drawable://" + R.drawable.image37)
         latestArray.add(obj3)
     }
 
@@ -195,5 +210,21 @@ class DashboardFragment : Fragment(), View.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         bannerArray.clear()
+    }
+
+    override fun setPresenter(presenter: DashboardContract.Presenter) {
+        mPresenter = presenter
+    }
+
+    override fun showLoader() {
+    }
+
+    override fun hideLoader() {
+    }
+
+    override fun showMessage(msg: String) {
+    }
+
+    override fun addDisposable(disposable: Disposable) {
     }
 }

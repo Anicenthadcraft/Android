@@ -31,18 +31,18 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField("String","BASE_URL","\"http://www.google.co.in\"")
+            buildConfigField("String", "BASE_URL", "\"http://www.google.co.in\"")
         }
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
-            buildConfigField("String","BASE_URL","\"http://www.yahoo.com\"")
+            buildConfigField("String", "BASE_URL", "\"http://www.yahoo.com\"")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         qa {
             signingConfig signingConfigs.qa
             minifyEnabled false
-            buildConfigField("String","BASE_URL","\"http://www.google.com\"")
+            buildConfigField("String", "BASE_URL", "\"http://www.google.com\"")
         }
     }
 }
@@ -81,6 +81,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
