@@ -31,8 +31,6 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         initView()
         setPresenter(SplashPresenter(this))
         mPresenter.start()
-
-        //Toast.makeText(this,""+BuildConfig.BASE_URL, Toast.LENGTH_LONG).show();
     }
 
     private fun initView() {

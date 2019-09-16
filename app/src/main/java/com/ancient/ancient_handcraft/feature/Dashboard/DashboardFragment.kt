@@ -80,6 +80,8 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
         setImageAdapter(bannerArray)
         setFeaturedAdapter(rootView)
         setLatestProductAdapter(rootView)
+
+        mPresenter?.initiateUserFetchProcess()
     }
 
     private fun setFeaturedAdapter(rootView: View) {

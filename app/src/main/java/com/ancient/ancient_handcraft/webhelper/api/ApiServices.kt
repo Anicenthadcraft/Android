@@ -6,6 +6,7 @@ import com.ancient.ancient_handcraft.app.PojoObj.VerifyOTP.VerifyOtpResponse
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiServices {
@@ -34,6 +35,10 @@ interface ApiServices {
         @Field("mobileNo") mobileNo: String,
         @Field("otp") otp: String
     ): Observable<VerifyOtpResponse>
+
+
+    @GET("api/v1/getUserByToken")
+    fun GetUserByToken(): Observable<RegisterResponse>
 
 }
 

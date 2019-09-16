@@ -3,6 +3,7 @@ package com.ancient.ancient_handcraft.feature.Login
 import android.content.Context
 import android.util.Log
 import com.ancient.ancient_handcraft.R
+import com.ancient.ancient_handcraft.Utils.Constants
 import com.ancient.ancient_handcraft.app.AppData
 import com.ancient.ancient_handcraft.app.PojoObj.SignUp.UserSession
 import com.ancient.ancient_handcraft.webhelper.api.ApiClient
@@ -33,6 +34,7 @@ class LoginPresenter(val view: LoginContract.View, val context: Context) : Login
                         200 -> {
                             val session = UserSession(true, response?.payload)
                             appData?.userSession= session
+                            Constants.token = session.user!!.token
                             view.openDashboard()
                             view.showMessage(context.resources.getString(R.string.login_success_text))
                         }

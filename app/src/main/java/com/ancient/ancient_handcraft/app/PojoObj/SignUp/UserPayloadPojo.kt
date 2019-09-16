@@ -15,7 +15,8 @@ data class UserPayloadPojo(
     @SerializedName("password") var password: String = "",
     @SerializedName("id") var id: Int = 0,
     @SerializedName("type") var type: String = "",
-    @SerializedName("token") var token: String = ""
+    @SerializedName("token") var token: String = "",
+    @SerializedName("refreshToken") var refreshToken: String = ""
 ) : Serializable
 
 data class UserSession(
