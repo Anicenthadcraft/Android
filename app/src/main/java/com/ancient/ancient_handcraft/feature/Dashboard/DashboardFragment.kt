@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ancient.ancient_handcraft.AncientHandcraftApplication
 import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.Utils.AnimUtils.bannerArray
+import com.ancient.ancient_handcraft.Utils.AppUtils
 import com.ancient.ancient_handcraft.Utils.RecyclerViewMargin
 import com.ancient.ancient_handcraft.app.PojoObj.Banner.BannerObject
 import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.Featured_item_model
@@ -225,6 +226,10 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     }
 
     override fun showMessage(msg: String) {
+        AppUtils.showToastMsg(
+            context!!,
+            msg
+        )
     }
 
     override fun addDisposable(disposable: Disposable) {

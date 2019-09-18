@@ -4,6 +4,8 @@ import com.ancient.ancient_handcraft.app.PojoObj.Login.LoginResponse
 import com.ancient.ancient_handcraft.app.PojoObj.SignUp.RegisterResponse
 import com.ancient.ancient_handcraft.app.PojoObj.VerifyOTP.VerifyOtpResponse
 import io.reactivex.Observable
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -38,7 +40,7 @@ interface ApiServices {
 
 
     @GET("api/v1/getUserByToken")
-    fun GetUserByToken(): Observable<RegisterResponse>
+    suspend fun GetUserByToken(): Response<RegisterResponse>
 
 }
 

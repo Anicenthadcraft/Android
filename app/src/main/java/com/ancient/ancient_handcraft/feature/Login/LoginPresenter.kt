@@ -47,7 +47,7 @@ class LoginPresenter(val view: LoginContract.View, val context: Context) : Login
                     try {
                         if (error is HttpException) {
                             val body: ResponseBody =
-                                (error as HttpException).response().errorBody() as ResponseBody
+                                (error as HttpException).response()?.errorBody() as ResponseBody
                             val jsonObject = JSONObject(body.string())
                             val status = jsonObject.getInt("status")
                             when (status ?: "") {

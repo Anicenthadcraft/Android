@@ -45,7 +45,6 @@ object ApiClient {
     val apiCustomClient: Retrofit by lazy {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        //val token = (!Constants.token.isNullOrEmpty())?: Constants.token : ""
 
         val client = OkHttpClient.Builder().connectTimeout(3, TimeUnit.MINUTES)
             .writeTimeout(3, TimeUnit.MINUTES)
@@ -54,7 +53,7 @@ object ApiClient {
                 var request: Request? = null
                 val requestBuilder = chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
-                    // .addHeader("Authorization","Bearer "+)
+                    .addHeader("Authorization","Bearer "+Constants.token)
                 request = requestBuilder.build()
                 chain.proceed(request!!)
             }
@@ -64,11 +63,13 @@ object ApiClient {
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
             .build()
     }
 
     val apiService: ApiServices
         get() = apiClient.create(ApiServices::class.java)
+
+    val apiCustomService: ApiServices
+        get() = apiCustomClient.create(ApiServices::class.java)
 }
