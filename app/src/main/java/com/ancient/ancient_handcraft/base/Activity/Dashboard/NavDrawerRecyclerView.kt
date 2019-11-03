@@ -9,20 +9,27 @@ import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.NavDrawer_item_model
 import kotlinx.android.synthetic.main.nav_drawer_menu_item.view.*
 
-class NavDrawerRecyclerView(var mContext: Context, var itemList:ArrayList<NavDrawer_item_model>, var onClickInf: OnItemClickInterface) : RecyclerView.Adapter<NavDrawerRecyclerView.MyViewHolder>() {
+class NavDrawerRecyclerView(
+    var mContext: Context,
+    var itemList: ArrayList<NavDrawer_item_model>,
+    var onClickInf: OnItemClickInterface
+) : RecyclerView.Adapter<NavDrawerRecyclerView.MyViewHolder>() {
 
 
     private var context: Context
-    private var mItemList:ArrayList<NavDrawer_item_model>
+    private var mItemList: ArrayList<NavDrawer_item_model>
     private var mOnClickInf: OnItemClickInterface
+
     init {
         context = mContext
         mItemList = itemList
         mOnClickInf = onClickInf
     }
+
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.nav_drawer_menu_item, parent, false)
+        val v = LayoutInflater.from(parent.context)
+            .inflate(R.layout.nav_drawer_menu_item, parent, false)
         return MyViewHolder(v)
     }
 
@@ -30,17 +37,23 @@ class NavDrawerRecyclerView(var mContext: Context, var itemList:ArrayList<NavDra
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bindItems(mItemList[position])
 
-        if(position == mItemList.size-1){
+        if (position == 0) {
             holder.underline_view.visibility = View.GONE
+            holder.main_ll.setBackgroundColor(mContext.resources.getColor(R.color.colorPrimaryDark))
+            holder.nav_drawer_item_name_tv.setTextColor(mContext.resources.getColor(R.color.white))
         }
-        holder.main_ll.setOnClickListener{
-            mOnClickInf.onItemClick(position,mItemList[position])
+        if (position == mItemList.size - 1) {
+            holder.underline_view.visibility = View.GONE
+//
+        }
+        holder.main_ll.setOnClickListener {
+            mOnClickInf.onItemClick(position, mItemList[position])
         }
     }
 
     //this method is giving the size of the list
     override fun getItemCount(): Int {
-        if(mItemList!=null && mItemList.size>0) return mItemList.size else return 0
+        if (mItemList != null && mItemList.size > 0) return mItemList.size else return 0
     }
 
     //the class is hodling the list view
@@ -51,6 +64,7 @@ class NavDrawerRecyclerView(var mContext: Context, var itemList:ArrayList<NavDra
         val underline_view = itemView.underline_view
         fun bindItems(item: NavDrawer_item_model) {
             nav_drawer_item_name_tv.text = item.itemName
+            nav_drawer_item_iv.setImageDrawable(item.imageitemSource)
         }
     }
 }

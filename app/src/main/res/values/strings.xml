@@ -51,7 +51,7 @@
 
 
     <string name="search_bar_hint">SEARCH FOR PRODUCTS, BRANDS AND MORE</string>
-    <string name="category_text">Category</string>
+    <string name="category_text">Categories</string>
     <string name="offers_text">Offers</string>
     <string name="craft_text">Craft</string>
     <string name="success">success</string>
@@ -66,4 +66,6 @@
     <string name="logout_success_text">Logout Successfully</string>
     <string name="login_success_text">Login Successfully</string>
     <string name="otp_validation_error">Invalid OTP, Please check once</string>
+
+
 </resources>

@@ -1,5 +1,6 @@
 package com.ancient.ancient_handcraft.webhelper.api
 
+import com.ancient.ancient_handcraft.app.PojoObj.Category.CategoryListResponse
 import com.ancient.ancient_handcraft.app.PojoObj.Login.LoginResponse
 import com.ancient.ancient_handcraft.app.PojoObj.SignUp.RegisterResponse
 import com.ancient.ancient_handcraft.app.PojoObj.VerifyOTP.VerifyOtpResponse
@@ -41,6 +42,9 @@ interface ApiServices {
 
     @GET("api/v1/getUserByToken")
     suspend fun GetUserByToken(): Response<RegisterResponse>
+
+    @POST("/api/v1/public/category/search")
+    fun GetCategoryList(): Observable<CategoryListResponse>
 
 }
 

@@ -5,14 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import androidx.core.app.ActivityOptionsCompat
 import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.app.AppData
 import com.ancient.ancient_handcraft.base.Activity.Dashboard.DashboardActivity
 import com.ancient.ancient_handcraft.base.BaseActivity
 import com.ancient.ancient_handcraft.feature.Login.LoginActivity
+import com.ancient.ancient_handcraft.webhelper.api.ApiClient
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.splash_activity.*
 
 class SplashActivity : BaseActivity(), SplashContract.View {
 
@@ -35,6 +34,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
 
     private fun initView() {
         appData = AppData(context!!)
+        ApiClient.initateAppData(context!!)
     }
 
     override fun setPresenter(presenter: SplashContract.Presenter) {

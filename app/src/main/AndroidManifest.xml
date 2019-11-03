@@ -16,18 +16,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.splash.SplashActivity">
+        <activity
+            android:name=".feature.splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.Login.LoginActivity"></activity>
-        <activity android:name=".feature.SignUp.SignUpActivity"></activity>
-        <activity android:name=".feature.ForgotPassword.ForgotPasswordActivity"></activity>
+        <activity
+            android:name=".feature.Login.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".feature.SignUp.SignUpActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".feature.ForgotPassword.ForgotPasswordActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".base.Activity.Dashboard.DashboardActivity"></activity>
+        <activity
+            android:name=".base.Activity.Dashboard.DashboardActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

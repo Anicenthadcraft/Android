@@ -34,7 +34,7 @@ class LoginPresenter(val view: LoginContract.View, val context: Context) : Login
                         200 -> {
                             val session = UserSession(true, response?.payload)
                             appData?.userSession= session
-                            Constants.token = session.user!!.token
+
                             view.openDashboard()
                             view.showMessage(context.resources.getString(R.string.login_success_text))
                         }
@@ -67,6 +67,7 @@ class LoginPresenter(val view: LoginContract.View, val context: Context) : Login
                         }
                     } catch (e: Exception) {
                         Log.e("Exception", "" + e.message)
+                        view.showMessage(context.resources.getString(R.string.something_went_wrong))
                     }
                     //Observable.fromIterable(error.message)
                     view.hideLoader()

@@ -10,7 +10,8 @@
     <ScrollView
         android:id="@+id/mainScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimaryDark"
-                android:padding="@dimen/_10sdp">
+                android:padding="@dimen/_10sdp"
+                android:visibility="gone">
 
                 <FrameLayout
                     android:id="@+id/iv_profile_picture_fl"
@@ -69,7 +71,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_profile_picture_fl"
                     android:orientation="vertical">
 
                     <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
@@ -109,7 +110,7 @@
                     android:paddingLeft="@dimen/_17sdp"
                     android:paddingRight="@dimen/_17sdp"
                     android:paddingTop="@dimen/_15sdp"
-                    android:text="@string/home"
+                    android:text="@string/footer_user"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp" />-->
 

@@ -15,18 +15,19 @@ import com.ancient.ancient_handcraft.Utils.AnimUtils.bannerArray
 import com.ancient.ancient_handcraft.Utils.AppUtils
 import com.ancient.ancient_handcraft.Utils.RecyclerViewMargin
 import com.ancient.ancient_handcraft.app.PojoObj.Banner.BannerObject
+import com.ancient.ancient_handcraft.app.PojoObj.Category.CategoryListResponse
 import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.Featured_item_model
 import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.Latest_product_model
 import com.ancient.ancient_handcraft.app.carauselview.MyPagerAdapter
 import com.ancient.ancient_handcraft.app.type.FragType
 import com.ancient.ancient_handcraft.autoscrollviewpager.AutoScrollViewPager
-import com.ancient.ancient_handcraft.base.Activity.Dashboard.*
-import com.ancient.ancient_handcraft.feature.Login.LoginPresenter
+import com.ancient.ancient_handcraft.base.Activity.Dashboard.DashboardActivity
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
+import kotlinx.android.synthetic.main.loader_layout.*
 import me.relex.circleindicator.CircleIndicator
 
 class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.View {
@@ -34,7 +35,7 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
 
     val FIRST_PAGE = 1
     private lateinit var mContext: Context
-    private var rootView: View? = null
+    private var mView: View? = null
     private lateinit var adapter: MyPagerAdapter
     private lateinit var featuredAdapter: FraturedRecyclerView
     private lateinit var latestAdapter: LatestProductRecyclerView
@@ -68,6 +69,7 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     }
 
     private fun initView(rootView: View) {
+        mView = rootView
         pager = rootView.findViewById<AutoScrollViewPager>(R.id.viewPager)
         /* carouselView = rootView.findViewById(R.id.carouselView)
          carouselView.pageCount = sampleImages.size
@@ -79,14 +81,17 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
         featuredImageList()
         latestImageList()
         setImageAdapter(bannerArray)
-        setFeaturedAdapter(rootView)
-        setLatestProductAdapter(rootView)
+        setFeaturedAdapter()
+        setLatestProductAdapter()
+
 
         mPresenter?.initiateUserFetchProcess()
+
+        mView?.category_ll!!.setOnClickListener(this)
     }
 
-    private fun setFeaturedAdapter(rootView: View) {
-        rootView.featured_rv.layoutManager =
+    private fun setFeaturedAdapter() {
+        mView?.featured_rv!!.layoutManager =
             LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         var decoration = RecyclerViewMargin(20, featuredArray.size)
 
@@ -99,12 +104,12 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
                 }
 
             })
-        rootView.featured_rv.adapter = featuredAdapter
-        rootView.featured_rv.addItemDecoration(decoration)
+        mView?.featured_rv!!.adapter = featuredAdapter
+        mView?.featured_rv!!.addItemDecoration(decoration)
     }
 
-    private fun setLatestProductAdapter(rootView: View) {
-        rootView.latest_product_rv.layoutManager = GridLayoutManager(mContext, 2)
+    private fun setLatestProductAdapter() {
+        mView?.latest_product_rv!!.layoutManager = GridLayoutManager(mContext, 2)
         latestAdapter = LatestProductRecyclerView(
             mContext,
             latestArray,
@@ -118,7 +123,7 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
                 }
 
             })
-        rootView.latest_product_rv.adapter = latestAdapter
+        mView?.latest_product_rv!!.adapter = latestAdapter
     }
 
 
@@ -208,6 +213,20 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     }
 
     override fun onClick(v: View?) {
+        when (v?.getId()) {
+            R.id.category_ll -> {
+                if (AppUtils.isOnline(mContext)) {
+                    showLoader()
+                    mPresenter?.getCategoryList()
+                } else {
+                    AppUtils.showToastMsg(
+                        mContext,
+                        resources.getString(R.string.no_internet_connection_check)
+                    )
+                }
+            }
+
+        }
     }
 
     override fun onDestroyView() {
@@ -220,9 +239,11 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     }
 
     override fun showLoader() {
+        loader_ll!!.visibility = View.VISIBLE
     }
 
     override fun hideLoader() {
+        loader_ll.visibility = View.GONE
     }
 
     override fun showMessage(msg: String) {
@@ -233,5 +254,13 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     }
 
     override fun addDisposable(disposable: Disposable) {
+    }
+
+    override fun getCategoryListResponse(mCategoryListObj: CategoryListResponse) {
+        (mContext as DashboardActivity).loadFragment(
+            FragType.CategorySearchFragment,
+            true,
+            mCategoryListObj
+        )
     }
 }

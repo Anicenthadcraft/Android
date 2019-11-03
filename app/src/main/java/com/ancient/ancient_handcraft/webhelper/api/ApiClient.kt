@@ -1,22 +1,23 @@
 package com.ancient.ancient_handcraft.webhelper.api
 
-import android.provider.SyncStateContract
-import android.util.Log
+import android.content.Context
 import com.ancient.ancient_handcraft.Utils.Constants
 import com.ancient.ancient_handcraft.app.AppData
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
+    var appData: AppData? = null;
+    fun initateAppData(context: Context) {
+        appData = AppData(context)
+    }
+
     val apiClient: Retrofit by lazy {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -53,7 +54,7 @@ object ApiClient {
                 var request: Request? = null
                 val requestBuilder = chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization","Bearer "+Constants.token)
+                    .addHeader("Authorization", "Bearer " + appData?.userSession?.user?.token)
                 request = requestBuilder.build()
                 chain.proceed(request!!)
             }

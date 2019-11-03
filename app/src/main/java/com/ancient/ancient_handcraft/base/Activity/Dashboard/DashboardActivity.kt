@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
-import android.se.omapi.Session
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -24,6 +23,7 @@ import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.NavDrawer_ite
 import com.ancient.ancient_handcraft.app.PojoObj.SignUp.UserSession
 import com.ancient.ancient_handcraft.app.type.FragType
 import com.ancient.ancient_handcraft.app.type.TopBarConfig
+import com.ancient.ancient_handcraft.feature.Category.CategorySearchFragment
 import com.ancient.ancient_handcraft.feature.Dashboard.DashboardFragment
 import com.ancient.ancient_handcraft.feature.HandcraftItemList.HandcraftItemListFragment
 import com.ancient.ancient_handcraft.feature.Login.LoginActivity
@@ -34,7 +34,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.drawer_menu_layout.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
-import kotlin.collections.ArrayList
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -100,7 +99,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
         mDrawerToggle.syncState()
 
-        toolbar.setNavigationIcon(R.drawable.ic_header_menu_icon)
+        toolbar.setNavigationIcon(R.drawable.menu)
         mDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_header_back_arrow)
         setSupportActionBar(toolbar)
         supportActionBar!!.setHomeButtonEnabled(true)
@@ -141,18 +140,84 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getMenuItems(): ArrayList<NavDrawer_item_model> {
-        drawerMenuItems.add(NavDrawer_item_model("Home"))
-        drawerMenuItems.add(NavDrawer_item_model("Craft"))
-        drawerMenuItems.add(NavDrawer_item_model("Offer Zones"))
-        drawerMenuItems.add(NavDrawer_item_model("Notifications"))
-        drawerMenuItems.add(NavDrawer_item_model("My Orders"))
-        drawerMenuItems.add(NavDrawer_item_model("My Rewards"))
-        drawerMenuItems.add(NavDrawer_item_model("My Cart"))
-        drawerMenuItems.add(NavDrawer_item_model("My Wishlist"))
-        drawerMenuItems.add(NavDrawer_item_model("My Account"))
-        drawerMenuItems.add(NavDrawer_item_model("Gift Card"))
-        drawerMenuItems.add(NavDrawer_item_model("Help Centers"))
-        drawerMenuItems.add(NavDrawer_item_model("Logout"))
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Home",
+                resources.getDrawable(R.drawable.home_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Products",
+                resources.getDrawable(R.drawable.product_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Craft",
+                resources.getDrawable(R.drawable.cart_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Offer Zones",
+                resources.getDrawable(R.drawable.offer_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Notifications",
+                resources.getDrawable(R.drawable.notification_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "My Orders",
+                resources.getDrawable(R.drawable.order_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "My Rewards",
+                resources.getDrawable(R.drawable.rewards_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "My Cart",
+                resources.getDrawable(R.drawable.cart_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "My Wishlist",
+                resources.getDrawable(R.drawable.wishlistleft_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "My Account",
+                resources.getDrawable(R.drawable.myaccount_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Gift Card",
+                resources.getDrawable(R.drawable.gift_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Help Centers",
+                resources.getDrawable(R.drawable.helftcenter_menu)
+            )
+        )
+        drawerMenuItems.add(
+            NavDrawer_item_model(
+                "Logout",
+                resources.getDrawable(R.drawable.logout_menu)
+            )
+        )
 
         return drawerMenuItems
     }
@@ -273,6 +338,22 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 SearchInvisibility()
                 SearchBarInVisibility()
                 setTopBarTitle(getString(R.string.productdetails_text))
+                setTopBarVisibility(TopBarConfig.BACK)
+                setDrawerLockMode()
+            }
+
+            FragType.CategorySearchFragment -> {
+                if (enableFragGeneration) {
+                    mFragment = CategorySearchFragment.Instance(initializeObject!!)
+                }
+                HeaderSubIconVisibility()
+                NotificationInvisible()
+//                tv_notification_count.visibility = View.VISIBLE   // Added temporarily
+                //LocationVisibility()
+                ShareInVisibility()
+                SearchInvisibility()
+                SearchBarInVisibility()
+                setTopBarTitle(getString(R.string.category_text))
                 setTopBarVisibility(TopBarConfig.BACK)
                 setDrawerLockMode()
             }

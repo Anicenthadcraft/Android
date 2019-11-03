@@ -65,6 +65,7 @@ class SignUpPresenter(
                         }
                     } catch (e: Exception) {
                         Log.e("Exception", "" + e.message)
+                        view.showMessage(context.resources.getString(R.string.something_went_wrong))
                     }
                     //Observable.fromIterable(error.message)
                     view.hideLoader()
