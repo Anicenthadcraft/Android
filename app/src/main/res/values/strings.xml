@@ -3,6 +3,7 @@
 
 
     <string name="no_internet_connection_check">No network , Please check your internet connection</string>
+    <string name="no_content_text">No content available</string>
 
     <string name="email_id_hint">Email ID/ Mobile Number</string>
     <string name="password_hint">Password</string>

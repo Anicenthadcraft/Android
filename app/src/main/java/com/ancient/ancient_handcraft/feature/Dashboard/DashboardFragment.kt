@@ -257,10 +257,14 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     }
 
     override fun getCategoryListResponse(mCategoryListObj: CategoryListResponse) {
-        (mContext as DashboardActivity).loadFragment(
-            FragType.CategorySearchFragment,
-            true,
-            mCategoryListObj
-        )
+        if (AppUtils.isOnline(mContext)) {
+            (mContext as DashboardActivity).loadFragment(
+                FragType.CategorySearchFragment,
+                true,
+                mCategoryListObj
+            )
+        } else {
+            showMessage(resources.getString(R.string.no_internet_connection_check))
+        }
     }
 }

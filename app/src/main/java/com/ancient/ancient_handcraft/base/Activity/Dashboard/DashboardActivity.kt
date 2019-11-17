@@ -19,11 +19,13 @@ import com.ancient.ancient_handcraft.Utils.AnimUtils
 import com.ancient.ancient_handcraft.Utils.AppUtils
 import com.ancient.ancient_handcraft.Utils.AppUtils.Companion.showToastMsg
 import com.ancient.ancient_handcraft.app.AppData
+import com.ancient.ancient_handcraft.app.PojoObj.Category.CategoryListPayload
 import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.NavDrawer_item_model
 import com.ancient.ancient_handcraft.app.PojoObj.SignUp.UserSession
 import com.ancient.ancient_handcraft.app.type.FragType
 import com.ancient.ancient_handcraft.app.type.TopBarConfig
 import com.ancient.ancient_handcraft.feature.Category.CategorySearchFragment
+import com.ancient.ancient_handcraft.feature.CategoryWiseProductList.CategoryWiseProductListFragment
 import com.ancient.ancient_handcraft.feature.Dashboard.DashboardFragment
 import com.ancient.ancient_handcraft.feature.HandcraftItemList.HandcraftItemListFragment
 import com.ancient.ancient_handcraft.feature.Login.LoginActivity
@@ -34,6 +36,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.drawer_menu_layout.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
+
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -354,6 +357,24 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 SearchInvisibility()
                 SearchBarInVisibility()
                 setTopBarTitle(getString(R.string.category_text))
+                setTopBarVisibility(TopBarConfig.BACK)
+                setDrawerLockMode()
+            }
+            FragType.CategoryWiseProductListFragment -> {
+                if (enableFragGeneration) {
+                    mFragment = CategoryWiseProductListFragment()
+                    val args = Bundle()
+                    args.putSerializable("CategoryObj", initializeObject as CategoryListPayload)
+                    mFragment.setArguments(args)
+                }
+                HeaderSubIconVisibility()
+                NotificationInvisible()
+//                tv_notification_count.visibility = View.VISIBLE   // Added temporarily
+                //LocationVisibility()
+                ShareInVisibility()
+                SearchInvisibility()
+                SearchBarInVisibility()
+                setTopBarTitle(getString(R.string.productlist_text))
                 setTopBarVisibility(TopBarConfig.BACK)
                 setDrawerLockMode()
             }

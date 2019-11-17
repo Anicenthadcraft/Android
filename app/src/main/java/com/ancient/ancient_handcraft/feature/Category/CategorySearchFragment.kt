@@ -11,21 +11,16 @@ import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.Utils.AppUtils
 import com.ancient.ancient_handcraft.app.PojoObj.Category.CategoryListPayload
 import com.ancient.ancient_handcraft.app.PojoObj.Category.CategoryListResponse
-import com.ancient.ancient_handcraft.app.PojoObj.DashboardActivity.Latest_product_model
 import com.ancient.ancient_handcraft.app.type.FragType
 import com.ancient.ancient_handcraft.base.Activity.Dashboard.DashboardActivity
-import com.ancient.ancient_handcraft.feature.Dashboard.LatestProductRecyclerView
-import com.ancient.ancient_handcraft.feature.Dashboard.OnLatestItemClickInterface
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_category_search.*
 import kotlinx.android.synthetic.main.fragment_category_search.view.*
-import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 
 class CategorySearchFragment : Fragment(), View.OnClickListener, CategorySearchContract.View {
     private lateinit var mContext: Context
     private var rootView: View? = null
     private lateinit var mPresenter: CategorySearchContract.Presenter
-    private lateinit var categoryListAdapter:CategoryListRecyclerView
+    private lateinit var categoryListAdapter: CategoryListRecyclerView
 
     companion object {
         private lateinit var mCategoryListResponse: CategoryListResponse
@@ -56,7 +51,15 @@ class CategorySearchFragment : Fragment(), View.OnClickListener, CategorySearchC
             mCategoryListResponse.payload!!,
             object : OnCategoryListItemClickInterface {
                 override fun onItemClick(position: Int, item: CategoryListPayload) {
-                   //TODO navigation to some Page
+                    if (AppUtils.isOnline(mContext)) {
+                        (mContext as DashboardActivity).loadFragment(
+                            FragType.CategoryWiseProductListFragment,
+                            true,
+                            item
+                        )
+                    } else {
+                        showMessage(resources.getString(R.string.no_internet_connection_check))
+                    }
                 }
             })
         view?.category_rv!!.adapter = categoryListAdapter

@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/category_item_rl"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
         android:background="@drawable/edittext_custom_bg"
-        android:padding="@dimen/_25sdp"
-        android:id="@+id/category_item_ll">
+        android:padding="@dimen/_25sdp">
 
         <ImageView
             android:id="@+id/category_item_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:paddingBottom="@dimen/_10sdp"
             android:src="@drawable/categories" />
 
         <com.ancient.ancient_handcraft.app.widget.AppCustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/category_item_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
             android:layout_below="@+id/category_item_iv"
+            android:layout_centerInParent="true"
+            android:gravity="center"
             android:text="@string/submit_text"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_10sdp"
             app:customFont="fonts/Lato-Bold.ttf" />
     </RelativeLayout>
 </LinearLayout>

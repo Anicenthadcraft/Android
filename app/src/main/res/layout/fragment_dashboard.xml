@@ -93,12 +93,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:weightSum="9"
                     android:padding="@dimen/_10sdp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_weight="3"
                         android:id="@+id/category_ll"
                         android:orientation="vertical">
 
@@ -114,16 +116,17 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:text="@string/category_text" />
+                            android:text="@string/category_text"
+                            android:textSize="@dimen/_10sdp"
+                            android:singleLine="true"/>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="137dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingLeft="@dimen/_30sdp"
-                        android:paddingRight="@dimen/_30sdp">
+                        android:layout_weight="3"
+                        android:orientation="vertical">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -137,13 +140,16 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:text="@string/offers_text" />
+                            android:text="@string/offers_text"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_10sdp"/>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
                         android:orientation="vertical">
 
                         <ImageView
@@ -158,7 +164,9 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/colorPrimaryDark"
-                            android:text="@string/craft_text" />
+                            android:text="@string/craft_text"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_10sdp"/>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

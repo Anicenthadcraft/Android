@@ -5,5 +5,5 @@ package com.ancient.ancient_handcraft.app.type
  */
 enum class FragType {
 
-    DEFAULT, DashboardFragment,HandcraftItemListFragment,ProductDetailsFragment, CategorySearchFragment
+    DEFAULT, DashboardFragment,HandcraftItemListFragment,ProductDetailsFragment, CategorySearchFragment, CategoryWiseProductListFragment
 }

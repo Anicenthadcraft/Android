@@ -24,6 +24,7 @@ import com.ancient.ancient_handcraft.R
 import com.ancient.ancient_handcraft.app.AppData
 import kotlinx.android.synthetic.main.loader_layout.view.*
 import android.text.InputType
+import com.ancient.ancient_handcraft.app.PojoObj.SignUp.UserSession
 import kotlinx.android.synthetic.main.signup_activity.*
 
 
@@ -34,7 +35,7 @@ class VerifyOTPDialog() :
         get() = verify_otp_edt.text.toString() ?: ""
     var disposable: Disposable? = null
     val maxLengthofEditText = 6
-
+    private var appData: AppData? = null
     companion object {
         private lateinit var header: String
         private lateinit var mobileno: String
@@ -91,6 +92,7 @@ class VerifyOTPDialog() :
     }
 
     private fun initView(view: View) {
+        appData = AppData(mContext)
         view.dialog_header_TV.text = header
         view.verify_otp_edt.setFilters(
             arrayOf<InputFilter>(
@@ -142,6 +144,9 @@ class VerifyOTPDialog() :
                                     context!!.resources.getString(R.string.registration_success_text)
                                 )
                             }
+
+                            val session = UserSession(true, response?.payload)
+                            appData?.userSession= session
                             //view.openDashboard()
                             mListener.onVerifySuccess()
                             dismiss()

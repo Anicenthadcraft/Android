@@ -1,10 +1,9 @@
 package com.ancient.ancient_handcraft.feature.Category
 
-class CategorySearchPresenter(val view : CategorySearchContract.View) : CategorySearchContract.Presenter {
+import com.ancient.ancient_handcraft.app.PojoObj.Category.CategoryListPayload
 
+class CategorySearchPresenter(val view : CategorySearchContract.View) : CategorySearchContract.Presenter {
     override fun start() {
     }
 
-    override fun initiateUserFetchProcess() {
-    }
 }
