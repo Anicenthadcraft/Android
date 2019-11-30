@@ -629,5 +629,13 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         searchbar_rl.visibility = View.GONE
     }
 
+    // OnClick attribute defined in xml only by intialized in side the Activity the implementation will not work in Fragment, applied for all Fragments
+    fun loader_inteface_onclick(v: View?) {
+        v!!.setOnClickListener { }
+    }
 
+    // CategoryWiseProductListFragment to resolve more loading issue by NoContentAvailable Click
+    fun onNoAvailableClick(v: View) {
+        v!!.setOnClickListener { }
+    }
 }

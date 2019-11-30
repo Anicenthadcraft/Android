@@ -26,6 +26,7 @@
             android:layout_height="match_parent"
             android:id="@+id/no_content_tv"
             android:gravity="center"
+            android:onClick="onNoAvailableClick"
             android:text="@string/no_content_text"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/_13sdp"
