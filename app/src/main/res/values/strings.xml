@@ -39,6 +39,7 @@
     <string name="forgot_password_heading_text">Forgot Password</string>
     <string name="submit_text">Submit</string>
     <string name="cancel_text">Cancel</string>
+    <string name="confirm_text">Confirm</string>
     <string name="blank"></string>
     <string name="dashboard_text">Dashboard</string>
     <string name="alert_exit">Please press BACK again to exit</string>
@@ -59,6 +60,7 @@
     <string name="something_went_wrong">Something went wrong</string>
 
     <string name="verify_otp_header">Verify OTP</string>
+    <string name="logout">Logout</string>
     <string name="verifyotp_hint">Enter OTP</string>
     <string name="verifyotp_blank_error">Please enter OTP</string>
     <string name="registration_success_text">Registration Successful</string>
@@ -67,6 +69,11 @@
     <string name="logout_success_text">Logout Successfully</string>
     <string name="login_success_text">Login Successfully</string>
     <string name="otp_validation_error">Invalid OTP, Please check once</string>
+
+    <string name="logout_confirmation_text">Are you sure want to Logout?</string>
+
+
+
 
 
 </resources>

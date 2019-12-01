@@ -33,22 +33,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_25sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:layout_alignParentBottom="true"
-            android:background="#66000000"
             android:orientation="vertical"
-            android:visibility="gone">
-
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/indicator_default"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_10sdp"
-                android:layout_centerInParent="true"
-                android:background="@color/color_transparent"
-                android:visibility="visible"
-                app:ci_drawable="@drawable/orange_dot"
-                app:ci_drawable_unselected="@drawable/white_radius"
-                app:ci_height="4dp"
-                app:ci_width="4dp" />
+            android:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/pagesContainer"

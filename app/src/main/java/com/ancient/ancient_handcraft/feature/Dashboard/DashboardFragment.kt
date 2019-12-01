@@ -28,7 +28,6 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import kotlinx.android.synthetic.main.loader_layout.*
-import me.relex.circleindicator.CircleIndicator
 
 class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.View {
 
@@ -41,7 +40,6 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     private lateinit var latestAdapter: LatestProductRecyclerView
     lateinit var appCtx: AncientHandcraftApplication
     private lateinit var pager: AutoScrollViewPager
-    private lateinit var indicator: CircleIndicator
     private lateinit var carouselView: CarouselView
     private var featuredArray: ArrayList<Featured_item_model> = ArrayList<Featured_item_model>()
     private var latestArray: ArrayList<Latest_product_model> = ArrayList<Latest_product_model>()
@@ -70,13 +68,11 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
 
     private fun initView(rootView: View) {
         mView = rootView
-        pager = rootView.findViewById<AutoScrollViewPager>(R.id.viewPager)
-        /* carouselView = rootView.findViewById(R.id.carouselView)
-         carouselView.pageCount = sampleImages.size
+        /*pager = rootView.findViewById<AutoScrollViewPager>(R.id.viewPager)
+        mView?.carouselView!!.pageCount = sampleImages.size
 
-         carouselView.setImageListener(imageListener)
-         indicator = rootView.findViewById(R.id.indicator_default)*/
-        indicator = rootView.findViewById(R.id.indicator_default)
+        mView?.carouselView!!.setImageListener(imageListener)*/
+
         bannerImageList()
         featuredImageList()
         latestImageList()
@@ -180,32 +176,32 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
             activity as DashboardActivity,
             childFragmentManager,
             bannerArray,
-            pager,
-            pagesContainer,
+            mView?.viewPager,
+            mView?.pagesContainer!!,
             R.drawable.indicator_circle
         )
 
         adapter.setInitialPage(2)
         adapter.show()
 
-        pager.adapter = adapter
+        mView?.viewPager!!.adapter = adapter
 
-        pager.startAutoScroll()
-        pager.setInterval(4000)
-        pager.setCycle(true)
-        pager.setStopScrollWhenTouch(true)
+        mView?.viewPager!!.startAutoScroll()
+        mView?.viewPager!!.setInterval(4000)
+        mView?.viewPager!!.setCycle(true)
+        mView?.viewPager!!.setStopScrollWhenTouch(true)
 
-        pager.setOnPageChangeListener(adapter)
+        mView?.viewPager!!.setOnPageChangeListener(adapter)
 
 
         // Set current item to the middle page so we can fling to both
         // directions left and right
-        pager.currentItem = FIRST_PAGE
+        mView?.viewPager!!.currentItem = FIRST_PAGE
 
         // Necessary or the pager will only have one extra page to show
         // make this at least however many pages you can see
         //pager.offscreenPageLimit = 6
-        indicator.setViewPager(pager);
+
         // UNCOMMENT THIS LINE FOR 3D Carausel effect
         //pager.setPageMargin(-2 * (displayMetrics.widthPixels / 5))//(Integer.parseInt(getString(R.string.pagermargin)))
 

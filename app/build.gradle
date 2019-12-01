@@ -61,7 +61,6 @@ dependencies {
     //Others
     implementation 'com.intuit.sdp:sdp-android:1.0.4'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'me.relex:circleindicator:2.1.2'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     //carouselview

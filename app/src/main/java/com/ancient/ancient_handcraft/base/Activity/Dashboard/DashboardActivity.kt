@@ -29,7 +29,11 @@ import com.ancient.ancient_handcraft.feature.CategoryWiseProductList.CategoryWis
 import com.ancient.ancient_handcraft.feature.Dashboard.DashboardFragment
 import com.ancient.ancient_handcraft.feature.HandcraftItemList.HandcraftItemListFragment
 import com.ancient.ancient_handcraft.feature.Login.LoginActivity
+import com.ancient.ancient_handcraft.feature.Logout.LogoutConfirmationDialog
+import com.ancient.ancient_handcraft.feature.Logout.LogoutConfirmationDialogClickListener
 import com.ancient.ancient_handcraft.feature.ProductDetailsFragment.ProductDetailsFragment
+import com.ancient.ancient_handcraft.feature.SignUp.SignUpActivity
+import com.ancient.ancient_handcraft.feature.VerifyOTP.VerifyOTPDialog
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
@@ -48,6 +52,20 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
     private val drawerMenuItems: ArrayList<NavDrawer_item_model> = ArrayList()
     private var backpressed: Long = 0
+
+    private val logoutConfirmationDialog by lazy {
+        LogoutConfirmationDialog.getInstance(
+            context!!,
+            context!!.resources.getString(R.string.logout),
+            context!!.resources.getString(R.string.logout_confirmation_text),
+            object : LogoutConfirmationDialogClickListener {
+                override fun onSubmitClick() {
+                    initiateLogoutProcess()
+                }
+
+            }
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,7 +134,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             object : OnItemClickInterface {
                 override fun onItemClick(position: Int, item: NavDrawer_item_model) {
                     if (item.itemName == "Logout") {
-                        initiateLogoutProcess()
+                        logoutConfirmationDialog.show((context as DashboardActivity).supportFragmentManager, "logoutConfirmationDialog")
                     }
                 }
             })
