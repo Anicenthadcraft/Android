@@ -41,8 +41,8 @@ class DashboardFragment : Fragment(), View.OnClickListener, DashboardContract.Vi
     lateinit var appCtx: AncientHandcraftApplication
     private lateinit var pager: AutoScrollViewPager
     private lateinit var carouselView: CarouselView
-    private var featuredArray: ArrayList<Featured_item_model> = ArrayList<Featured_item_model>()
-    private var latestArray: ArrayList<Latest_product_model> = ArrayList<Latest_product_model>()
+    private var featuredArray: ArrayList<Featured_item_model> = ArrayList()
+    private var latestArray: ArrayList<Latest_product_model> = ArrayList()
     private var sampleImages =
         intArrayOf(R.drawable.banner1, R.drawable.banner2, R.drawable.banner3)
     private var mPresenter: DashboardContract.Presenter? = null
